@@ -32,5 +32,5 @@ class Var(object):
         )
     KEEP_ALIVE = str(environ.get("KEEP_ALIVE", "0").lower()) in  ("1", "true", "t", "yes", "y")
     DEBUG = str(environ.get("DEBUG", "0").lower()) in ("1", "true", "t", "yes", "y")
-    USE_SESSION_FILE = str(environ.get("USE_SESSION_FILE", "0").lower()) in ("1", "true", "t", "yes", "y")
+    USE_SESSION_FILE = str(environ.get("USE_SESSION_FILE", "BQDl9vYAE71uNcrsC0ZqGsw0dVz6vm4u4E0dHYiSC5oEWoWMPOG4k73RMpGeCvOWBnKaEr173nhayMfNynYgIgI_4uuOeZeIMuIQAxglE1O3Yh5kk-E82Rih5u-tM8WdCDQC_g1IhAswD9bto56xL8CC6gT5QONWHXXBXWLVLcTPUPl35b4tUwgZf2327sZVDsM0-xuFg_Yz-J64c0JhNpYAk0GLrp9hGMl42aFIUVWBnza24RQM5OgeayaXVCb4nDI6HXoILAPdVn03XYGbtKGmFWhYGOk5rmK_ewjZI-7sLNLWwpjsugjD6vx7TiKAhpRc9p1UXD2-I_48fHbs7MjrQAHljgAAAABIzDUjAA").lower()) in ("1", "true", "t", "yes", "y")
     ALLOWED_USERS = [x.strip("@ ") for x in str(environ.get("ALLOWED_USERS", "") or "").split(",") if x.strip("@ ")]
