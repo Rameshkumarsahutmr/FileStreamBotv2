@@ -1,5 +1,5 @@
-# This file is a part of TG-FileStreamBot
-# Coding : Jyothis Jayanth [@EverythingSuckz]
+# Install the requests library
+# pip install requests
 
 import logging
 from pyrogram import filters, errors
@@ -9,7 +9,11 @@ from WebStreamer.bot import StreamBot, logger
 from WebStreamer.utils import get_hash, get_name
 from pyrogram.enums.parse_mode import ParseMode
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+import requests  # Import the requests library
 
+# Shortener Configuration
+SHORTENER_ENDPOINT = "https://mplaylink.com/api/url/shorten"
+MPAYLINK_API_KEY = Var.MPAYLINK_API_KEY
 
 @StreamBot.on_message(
     filters.private
@@ -31,24 +35,40 @@ async def media_receive_handler(_, m: Message):
     log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
     file_hash = get_hash(log_msg, Var.HASH_LENGTH)
     stream_link = f"{Var.URL}{log_msg.id}/{quote_plus(get_name(m))}?hash={file_hash}"
-    short_link = f"{Var.URL}{file_hash}{log_msg.id}"
+
+    # Shorten the URL using mplaylink.com
+    short_link = shorten_url(stream_link)
+
     logger.info(f"Generated link: {stream_link} for {m.from_user.first_name}")
     try:
         await m.reply_text(
-            text="<code>{}</code>\n(<a href='{}'>shortened</a>)".format(
-                stream_link, short_link
+            text="<code>{}</code>".format(
+                stream_link,
             ),
             quote=True,
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Open", url=stream_link)]]
+                [[InlineKeyboardButton(f"Open ({short_link})", url=short_link)]]
             ),
         )
     except errors.ButtonUrlInvalid:
         await m.reply_text(
-            text="<code>{}</code>\n\nshortened: {})".format(
-                stream_link, short_link
+            text="<code>{}</code>".format(
+                stream_link,
             ),
             quote=True,
             parse_mode=ParseMode.HTML,
         )
+
+def shorten_url(url):
+    # Make a POST request to mplaylink.com
+    response = requests.post(
+        SHORTENER_ENDPOINT,
+        json={"url": url},
+        headers={"Authorization": f"Bearer {MPAYLINK_API_KEY}"},
+    )
+
+    # Extract the shortened URL from the response
+    short_url = response.json().get("short_url", url)
+
+    return short_url
