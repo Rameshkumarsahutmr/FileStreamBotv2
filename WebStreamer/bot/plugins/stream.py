@@ -10,9 +10,10 @@ from WebStreamer.utils import get_hash, get_name
 from pyrogram.enums.parse_mode import ParseMode
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 import requests  # Import the requests library
+import json  # Import the json library
 
 # Shortener Configuration
-SHORTENER_ENDPOINT = "https://mplaylink.com/api/url/shorten"
+SHORTENER_ENDPOINT = "https://mplaylink.com/api"
 MPAYLINK_API_KEY = Var.MPAYLINK_API_KEY
 
 @StreamBot.on_message(
@@ -61,14 +62,18 @@ async def media_receive_handler(_, m: Message):
         )
 
 def shorten_url(url):
-    # Make a POST request to mplaylink.com
-    response = requests.post(
-        SHORTENER_ENDPOINT,
-        json={"url": url},
-        headers={"Authorization": f"Bearer {MPAYLINK_API_KEY}"},
-    )
+    api_key = MPAYLINK_API_KEY
+    api_url = f"https://mplaylink.com/api?api={api_key}&url={url}"
 
-    # Extract the shortened URL from the response
-    short_url = response.json().get("short_url", url)
+    # Make a GET request to mplaylink.com
+    response = requests.get(api_url)
 
-    return short_url
+    # Parse the JSON response
+    try:
+        data = response.json()
+        short_url = data.get("shortenedUrl", url)
+        return short_url
+    except json.decoder.JSONDecodeError:
+        # Handle the case where JSON decoding fails
+        print("Error decoding JSON response:", response.text)
+        return url
