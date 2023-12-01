@@ -34,3 +34,4 @@ class Var(object):
     DEBUG = str(environ.get("DEBUG", "0").lower()) in ("1", "true", "t", "yes", "y")
     USE_SESSION_FILE = str(environ.get("USE_SESSION_FILE", "0").lower()) in ("1", "true", "t", "yes", "y")
     ALLOWED_USERS = [x.strip("@ ") for x in str(environ.get("ALLOWED_USERS", "") or "").split(",") if x.strip("@ ")]
+    MPAYLINK_API_KEY = "887ed0c61a5197b189923233988dde916cb970df"  # Add your mPlayLink API key here
