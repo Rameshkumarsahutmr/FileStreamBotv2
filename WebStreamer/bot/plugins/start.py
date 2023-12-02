@@ -15,17 +15,6 @@ async def start(_, m: Message):
             disable_web_page_preview=True, quote=True
         )
 
-    # Check if the user is a member of the channel
-    if Var.CHANNEL_ID:
-        channel_member = await User(Var.CHANNEL_ID).get_member(m.from_user.id)
-        if not channel_member.status == "member":
-            # If not a member, send a message and invite to join channel
-            invite_text = (
-                "You need to be a member of the channel to use this bot. Join the channel and try again.\n\n"
-                f"Join here: {Var.CHANNEL_INVITE_LINK}"
-            )
-            return await m.reply(invite_text, disable_web_page_preview=True, quote=True)
-
     # Your new message
     message_text = "I am Telegram File to Link Generator Bot with Channel support.\nSend me any file and get a direct download link and streamable link."
 
@@ -41,4 +30,5 @@ async def start(_, m: Message):
     await m.reply(
         text=message_text,
         reply_markup=buttons
-                                 )
+    )
+    
