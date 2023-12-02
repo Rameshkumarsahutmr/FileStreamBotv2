@@ -4,6 +4,7 @@
 import sys
 from os import environ
 from dotenv import load_dotenv
+from pyrogram.types import User  # Add this import
 
 load_dotenv()
 
@@ -31,5 +32,8 @@ class Var(object):
     DEBUG = str(environ.get("DEBUG", "0").lower()) in ("1", "true", "t", "yes", "y")
     USE_SESSION_FILE = str(environ.get("USE_SESSION_FILE", "0").lower()) in ("1", "true", "t", "yes", "y")
     ALLOWED_USERS = [x.strip("@ ") for x in str(environ.get("ALLOWED_USERS", "") or "").split(",") if x.strip("@ ")]
-    CHANNEL_ID = -1001615768866  # Your channel ID
+    
+    # Change the next line to use the User class correctly
+    user = User(Var.BIN_CHANNEL)
+    CHANNEL_ID = Var.BIN_CHANNEL
     CHANNEL_INVITE_LINK = "https://t.me/film4movieee"  # Your channel invite link
