@@ -1,5 +1,5 @@
 # This file is a part of TG-FileStreamBot
-# Coding : Jyothis Jayanth [@EverythingSuckz]
+# Coding: Jyothis Jayanth [@EverythingSuckz]
 
 import sys
 from os import environ
@@ -7,17 +7,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 class Var(object):
     MULTI_CLIENT = False
-    API_ID = int(environ.get("API_ID","15070966"))
-    API_HASH = str(environ.get("API_HASH","636638d9c79d98996e395a82b1b7a21e"))
-    BOT_TOKEN = str(environ.get("BOT_TOKEN","6532913422:AAEUNgYYI3-k9Q2U2scj6uHB_1pMPgqMQhs"))
-    SLEEP_THRESHOLD = int(environ.get("SLEEP_THRESHOLD", "60"))  # 1 minte
+    API_ID = int(environ.get("API_ID", "15070966"))
+    API_HASH = str(environ.get("API_HASH", "636638d9c79d98996e395a82b1b7a21e"))
+    BOT_TOKEN = str(environ.get("BOT_TOKEN", "6532913422:AAEUNgYYI3-k9Q2U2scj6uHB_1pMPgqMQhs"))
+    SLEEP_THRESHOLD = int(environ.get("SLEEP_THRESHOLD", "60"))  # 1 minute
     WORKERS = int(environ.get("WORKERS", "6"))  # 6 workers = 6 commands at once
-    BIN_CHANNEL = int(
-        environ.get("BIN_CHANNEL","-1001905411043")
-    )  # you NEED to use a CHANNEL when you're using MULTI_CLIENT
+    BIN_CHANNEL = int(environ.get("BIN_CHANNEL", "-1001615768866"))  # Your channel ID
     PORT = int(environ.get("PORT", 8080))
     BIND_ADDRESS = str(environ.get("WEB_SERVER_BIND_ADDRESS", "0.0.0.0"))
     PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
@@ -34,4 +31,5 @@ class Var(object):
     DEBUG = str(environ.get("DEBUG", "0").lower()) in ("1", "true", "t", "yes", "y")
     USE_SESSION_FILE = str(environ.get("USE_SESSION_FILE", "0").lower()) in ("1", "true", "t", "yes", "y")
     ALLOWED_USERS = [x.strip("@ ") for x in str(environ.get("ALLOWED_USERS", "") or "").split(",") if x.strip("@ ")]
-    MPAYLINK_API_KEY = "887ed0c61a5197b189923233988dde916cb970df"  # Add your mPlayLink API key here
+    CHANNEL_ID = -1001615768866  # Your channel ID
+    CHANNEL_INVITE_LINK = "https://t.me/film4movieee"  # Your channel invite link
