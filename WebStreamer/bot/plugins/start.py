@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram import User
+from pyrogram.types import User  # Fix the import line
 
 from WebStreamer.vars import Var
 from WebStreamer.bot import StreamBot
@@ -41,4 +41,4 @@ async def start(_, m: Message):
     await m.reply(
         text=message_text,
         reply_markup=buttons
-    )
+                                 )
