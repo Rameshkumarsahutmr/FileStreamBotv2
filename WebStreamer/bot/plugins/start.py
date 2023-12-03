@@ -17,7 +17,7 @@ async def start(_, m: Message):
       
     if Var.UPDATES_CHANNEL != "None":        
         try:
-            user = await StreamBot.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
+            user = await m.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
             
         except UserNotParticipant:
              await m.reply(                
