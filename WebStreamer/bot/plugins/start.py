@@ -3,7 +3,7 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.types import User  # Fix the import line
 
 from WebStreamer.vars import Var
-from WebStreamer.bot import StreamBot
+from WebStreamer.bot import StreamBot 
 
 @StreamBot.on_message(filters.command(["start", "help"]) & filters.private)
 async def start(_, m: Message):
@@ -17,7 +17,7 @@ async def start(_, m: Message):
       
     if Var.UPDATES_CHANNEL != "None":        
         try:
-            user = await m.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
+            user = await StreamBot.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
             
         except UserNotParticipant:
              await m.reply(                
@@ -31,7 +31,7 @@ async def start(_, m: Message):
                 ),
                 
             )
-             return
+            return
     # Your new message
     message_text = "I am Telegram File to Link Generator Bot with Channel support.\nSend me any file and get a direct download link and streamable link."
 
