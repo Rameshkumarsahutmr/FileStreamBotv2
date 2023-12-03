@@ -15,23 +15,7 @@ async def start(_, m: Message):
             disable_web_page_preview=True, quote=True
         )
       
-    if Var.UPDATES_CHANNEL != "None":        
-        try:
-            user = await m.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
-            
-        except UserNotParticipant:
-             await m.reply(                
-                text="<i>𝙹𝙾𝙸𝙽 CHANNEL 𝚃𝙾 𝚄𝚂𝙴 𝙼𝙴🔐</i>",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
-                        ]
-                    ]
-                ),
-                
-            )
-            return
+    
     # Your new message
     message_text = "I am Telegram File to Link Generator Bot with Channel support.\nSend me any file and get a direct download link and streamable link."
 
