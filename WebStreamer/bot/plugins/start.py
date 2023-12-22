@@ -23,7 +23,7 @@ async def start(_, m: Message):
     buttons = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("👤 Bot owner", url="https://t.me/being_ram_esh")],
-            [InlineKeyboardButton("💬 Chat support", url="https://t.me/+ZrS7H52Qeik0NjM1")]
+            [InlineKeyboardButton("💬 Chat support", url="https://t.me/Rksowner")]
         ]
     )
 
